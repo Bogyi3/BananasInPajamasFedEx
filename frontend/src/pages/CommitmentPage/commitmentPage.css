@@ -1,0 +1,120 @@
+.drop-down-item {
+  width: 80vw;
+  margin: 25px auto;
+  background-color: turquoise;
+  border-radius: 10px;
+}
+
+.drop-down-item button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.drop-down-header {
+  display: flex;
+  align-items: center;
+}
+
+.drop-down-header h1 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.toggle {
+  background-color: #ccc;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.arrow-down {
+  width: 16px;
+  height: 10px;
+  margin: 20px;
+}
+
+.rotated-arrow {
+  transform: rotate(180deg);
+}
+
+.commitment-item {
+  display: flex;
+  margin: 5px 20px;
+  font-size: 14px;
+}
+
+.completion-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 20px 5px 0px;
+  width: 10%;
+}
+
+.completion-date .year {
+  font-size: 10px;
+}
+
+.completion-date .month {
+  font-size: 12px;
+}
+
+.completion-date .day {
+  font-size: 26px;
+}
+
+.commitment-name {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.commitment-xp {
+  width: 10%;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commitment-item:not(:first-child) {
+  border-top: 1px solid black;
+}
+
+.commitment-item:first-child .commitment-xp, 
+.commitment-item:first-child .header-name,
+.commitment-item:first-child .completion-date {
+  font-size: 18px;
+}
+
+.ongoing-commitments {
+  width: 80vw;
+  margin: 25px auto;
+  background-color: turquoise;
+  border-radius: 10px;
+}
+
+.ongoing-commitments h1 {
+  font-size: 18px;
+  text-align: center;
+  padding: 13px;
+  margin-bottom: 0px;
+}
+
+.ongoing-items {
+  border-radius: 0px 0px 10px 10px;
+  background-color: wheat;
+}
+
+.ongoing-items .commitment-item:not(:first-child) {
+  border-top: 1px solid black;
+}
+
+
