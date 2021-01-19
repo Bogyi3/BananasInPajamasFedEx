@@ -9,6 +9,7 @@ import {
 // TODO import NavBar from './components/NavBar/NavBar'; navbar component between Router & Switch
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import CommitmentPage from './pages/CommitmentPage/CommitmentPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/registration" component={RegistrationPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/commitments" render={() => <CommitmentPage />} />
         </Switch>
       </Router>
     </div>
