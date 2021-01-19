@@ -20,6 +20,9 @@ export const challengeService = {
     const insertChallenge = await challengeRepo.saveChallenge(challengeName, startingDate, closingDate, minXp);
     const lastInsertedId = insertChallenge.results.insertId;
     // const getLastChallenge = await this.getOrderById(lastInsertedId);
-    return lastInsertedId;
+    return {
+      lastInsertedId,
+      message: 'Challenge was saved',
+    };
   },
 };
