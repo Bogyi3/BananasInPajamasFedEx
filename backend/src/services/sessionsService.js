@@ -35,6 +35,7 @@ export const sessionsService = {
       id: user.results[0].id,
       username,
       token,
+      userType: user.results[0].userType,
     };
 
     return returnData;
