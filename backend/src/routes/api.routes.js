@@ -1,5 +1,10 @@
 import express from 'express';
-import { helloController, registrationController, sessionsController } from '../controllers';
+import {
+  helloController,
+  registrationController,
+  sessionsController,
+  challengeController,
+} from '../controllers';
 
 import authHandler from '../middlewares/auth-handler';
 import adminAuthHandler from '../middlewares/admin-auth-handler';
@@ -15,6 +20,7 @@ router.post('/registration', registrationController.post);
 router.post('/sessions', sessionsController.post);
 router.use(authHandler);
 router.use(adminAuthHandler);
+router.post('/challenge', challengeController.post);
 
 router.get('/hello', helloController.get);
 
