@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './challengePage.css';
 
+const PORT = process.env.REACT_APP_API_URL;
+
 function ChallengePage() {
   const [challengeName, setChallengeName] = useState('');
   const [isNameSet, setIsNameSet] = useState(false);
@@ -9,6 +11,9 @@ function ChallengePage() {
   const [commitmentName, setCommitmentName] = useState('');
   const [commitmentXp, setCommitmentXp] = useState('');
   const [showChallengeAdded, setShowChallengeAdded] = useState(false);
+  const [startingDate, setStartingDate] = useState('');
+  const [closingDate, setClosingDate] = useState('');
+  const [minXp, setMinXp] = useState('');
 
   function handleAcceptButtonClick() {
     setIsNameSet(!isNameSet);
@@ -49,19 +54,34 @@ function ChallengePage() {
     setShowAddCommitment(false);
   }
 
+  function onStartingDateChange(event) {
+    setStartingDate(event.target.value);
+  }
+
+  function onClosingDateChange(event) {
+    setClosingDate(event.target.value);
+  }
+
+  function onMinXpChange(event) {
+    setMinXp(event.target.value);
+  }
+
   function handleAddChallengeButton(event) {
     event.preventDefault();
-    /* const data = {
+    const data = {
       challengeName,
-      commitments
-    }
-    fetch(someurl, {
+      commitments,
+      startingDate,
+      closingDate,
+      minXp,
+    };
+    fetch(`${PORT}/challenge`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data
-    }); */
+      body: JSON.stringify(data),
+    });
     setShowChallengeAdded(true);
   }
 
@@ -139,6 +159,40 @@ function ChallengePage() {
         </form>
         )
       }
+      <form className="form-card">
+        <label htmlFor="startingDate">
+          Starting Date
+          <input
+            type="text"
+            name="staringDate"
+            id="startingDate"
+            value={startingDate}
+            onChange={onStartingDateChange}
+            placeholder="format: 2021.01.01."
+          />
+        </label>
+        <label htmlFor="closingDate">
+          Closing Date
+          <input
+            type="text"
+            name="closingDate"
+            id="closingDate"
+            value={closingDate}
+            onChange={onClosingDateChange}
+            placeholder="format: 2021.01.01"
+          />
+        </label>
+        <label htmlFor="minXp">
+          Minimum XP required
+          <input
+            type="number"
+            name="minXp"
+            id="minXp"
+            value={minXp}
+            onChange={onMinXpChange}
+          />
+        </label>
+      </form>
       <button type="button" id="submit-button" onClick={handleAddChallengeButton}>Submit Challenge</button>
       {showChallengeAdded && (<p className="add-challenge-completed">You have submitted your challenge</p>)}
     </div>
