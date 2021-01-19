@@ -1,0 +1,121 @@
+.add-header{
+  margin: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.form-card {
+  width: 80vw;
+  margin: 25px auto;
+  background-color: teal;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.challenge-name-form label {
+  margin: 15px 0px;
+  font-size: 16px;
+}
+
+.challenge-name-form input {
+  display: block;
+  margin: 10px 10%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid black;
+  height: 10vw;
+  width: 80%;
+  outline: none;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: none;
+  height: 10vw;
+  width: 20vw;
+  border-radius: 4px;
+}
+
+.challenge-name-form button {
+  margin: 15px 0px;
+  width: 30%;
+}
+
+.challenge-name {
+  position: relative;
+  min-height: 70px;
+  padding-right: 18%;
+}
+
+.challenge-name button {
+  position: absolute;
+  top: 15px;
+  right: 10%;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+}
+
+.challenge-name h2 {
+  font-size: 18px;
+  margin: 8px 10%;
+  word-break: break-all;
+}
+
+.commitment-list h2 {
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+}
+
+.commitment-list label {
+  display: block;
+}
+
+.commitment-list input {
+  display: block;
+}
+
+.commitment-list {
+  padding: 10px 10%;
+}
+
+.commitment-list ul {
+  padding: 0;
+  margin: 20px 0px;
+  list-style-type: none;
+}
+
+.form-card input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #555;
+  width: 80%;
+  margin: 10px 8%;
+  outline: none;
+}
+
+.form-card input:focus {
+  border-bottom: 2px solid black;
+}
+
+.form-card label {
+  padding: 10px 8%;
+}
+
+.add-commit-button {
+  margin: 10px 8%;
+}
+
+#submit-button {
+  display: block;
+  width: 80vw;
+  margin: 25px auto;
+}
+
+.add-challenge-completed {
+  font-weight: bold;
+  text-align: center;
+}
