@@ -5,8 +5,6 @@ import generalFetch from '../../utilities/generalFetch';
 
 function ChallengePage() {
   const [challengeName, setChallengeName] = useState('');
-  const [isNameSet, setIsNameSet] = useState(false);
-  const [showAddCommitment, setShowAddCommitment] = useState(false);
   const [commitments, setCommitments] = useState([]);
   const [commitmentName, setCommitmentName] = useState('');
   const [commitmentXp, setCommitmentXp] = useState('');
@@ -14,19 +12,11 @@ function ChallengePage() {
   const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
   const [minXp, setMinXp] = useState('');
+  const [formError, setFormError] = useState('');
   const loginData = useSelector((state) => state.login);
-
-  function handleAcceptButtonClick() {
-    setIsNameSet(!isNameSet);
-  }
 
   function onChallengeNameChange(event) {
     setChallengeName(event.target.value);
-  }
-
-  function handleShowAddClick(event) {
-    event.preventDefault();
-    setShowAddCommitment(!showAddCommitment);
   }
 
   function onCommitmentNameChange(event) {
@@ -43,10 +33,13 @@ function ChallengePage() {
       commitmentName,
       xp: commitmentXp,
     };
-    setCommitments(commitments.concat(data));
-    setCommitmentName('');
-    setCommitmentXp('');
-    setShowAddCommitment(false);
+    if (!data.commitmentName || !data.xp) {
+      setFormError('Missing field in add commitment form');
+    } else {
+      setCommitments(commitments.concat(data));
+      setCommitmentName('');
+      setCommitmentXp('');
+    }
   }
 
   function onStartingDateChange(event) {
@@ -63,6 +56,7 @@ function ChallengePage() {
 
   function handleAddChallengeButton(event) {
     event.preventDefault();
+
     const data = {
       challengeName,
       commitments,
@@ -70,12 +64,21 @@ function ChallengePage() {
       closingDate,
       minXp,
     };
-    generalFetch('challenge', 'POST', data, loginData.token);
-    setShowChallengeAdded(true);
+
+    const dateRegex = /^\d{4}[/.]\d{1,2}[/.]\d{1,2}$/;
+
+    if (!data.challengeName || !data.commitments || !data.minXp) {
+      setFormError('All fields are required');
+    } else if (!dateRegex.test(startingDate) || !dateRegex.test(closingDate)) {
+      setFormError('Correct date format is: 1970.01.01');
+    } else {
+      generalFetch('challenge', 'POST', data, loginData.token);
+      setShowChallengeAdded(true);
+    }
   }
 
   return (
-    <div className="#challenge-page">
+    <div className="challenge-page">
       <h2 className="add-header">Add a new challenge:</h2>
       <div className="form-card">
         <form className="challenge-name-form">
@@ -89,29 +92,24 @@ function ChallengePage() {
               onChange={onChallengeNameChange}
             />
           </label>
-          <button type="button" className="challenge-button" onClick={handleAcceptButtonClick}>Accept</button>
         </form>
-      </div>
-      <div className="commitment-list form-card">
-        <h2>Commitments</h2>
-        <ul>
-          { (commitments || [])
-            && commitments.map((commitment, index) => (
-              <li key={index}>
-                {commitment.commitmentName}
-                ,
-                {' '}
-                {commitment.xp}
-                {' XP'}
-              </li>
-            ))}
-        </ul>
-        <button type="button" className="challenge-button" onClick={handleShowAddClick}>Add more</button>
-      </div>
-      {
-        showAddCommitment
-        && (
-        <form className="form-card add-commit-form">
+        <div className="commitment-list">
+          <h2>Commitments</h2>
+          <ul>
+            { (commitments.length > 0)
+              ? commitments.map((commitment, index) => (
+                <li key={index}>
+                  {commitment.commitmentName}
+                  ,
+                  {' '}
+                  {commitment.xp}
+                  {' XP'}
+                </li>
+              ))
+              : <li className="no-commitments">Add at least one commitment</li>}
+          </ul>
+        </div>
+        <form className="add-commit-form">
           <label htmlFor="commitmentName">
             Name of Commitment:
             <input
@@ -138,42 +136,46 @@ function ChallengePage() {
           <br />
           <button type="button" className="challenge-button add-commit-button" onClick={handleAddCommitment}>Add</button>
         </form>
+        <form>
+          <label htmlFor="startingDate">
+            Starting Date
+            <input
+              type="text"
+              name="staringDate"
+              id="startingDate"
+              value={startingDate}
+              onChange={onStartingDateChange}
+              placeholder="format: 2021.01.01"
+            />
+          </label>
+          <label htmlFor="closingDate">
+            Closing Date
+            <input
+              type="text"
+              name="closingDate"
+              id="closingDate"
+              value={closingDate}
+              onChange={onClosingDateChange}
+              placeholder="format: 2021.01.01"
+            />
+          </label>
+          <label htmlFor="minXp">
+            Minimum XP required
+            <input
+              type="number"
+              name="minXp"
+              id="minXp"
+              value={minXp}
+              onChange={onMinXpChange}
+            />
+          </label>
+        </form>
+      </div>
+      {
+        formError && (
+          <div className="error-message">{formError}</div>
         )
       }
-      <form className="form-card">
-        <label htmlFor="startingDate">
-          Starting Date
-          <input
-            type="text"
-            name="staringDate"
-            id="startingDate"
-            value={startingDate}
-            onChange={onStartingDateChange}
-            placeholder="format: 2021.01.01."
-          />
-        </label>
-        <label htmlFor="closingDate">
-          Closing Date
-          <input
-            type="text"
-            name="closingDate"
-            id="closingDate"
-            value={closingDate}
-            onChange={onClosingDateChange}
-            placeholder="format: 2021.01.01"
-          />
-        </label>
-        <label htmlFor="minXp">
-          Minimum XP required
-          <input
-            type="number"
-            name="minXp"
-            id="minXp"
-            value={minXp}
-            onChange={onMinXpChange}
-          />
-        </label>
-      </form>
       <button type="button" className="challenge-button" id="submit-button" onClick={handleAddChallengeButton}>Submit Challenge</button>
       {showChallengeAdded && (<p className="add-challenge-completed">You have submitted your challenge</p>)}
     </div>

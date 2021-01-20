@@ -1,4 +1,4 @@
-.add-header{
+.add-header {
   margin: 20px;
   font-size: 20px;
   text-align: center;
@@ -27,7 +27,7 @@
   background-color: transparent;
   border: none;
   border-bottom: 3px solid black;
-  height: 10vw;
+  height: 40px;
   width: 80%;
   outline: none;
   font-size: 18px;
@@ -36,7 +36,7 @@
 .challenge-button {
   border: none;
   outline: none;
-  height: 10vw;
+  height: 40px;
   width: 20vw;
   border-radius: 4px;
   background-color: #0D0D26;
@@ -71,9 +71,8 @@
 }
 
 .commitment-list h2 {
-  font-weight: 400;
-  font-size: 18px;
-  margin: 0;
+  font-size: 16px;
+  margin: 0 10%;
 }
 
 .commitment-list label {
@@ -84,13 +83,9 @@
   display: block;
 }
 
-.commitment-list {
-  padding: 10px 10%;
-}
-
 .commitment-list ul {
   padding: 0;
-  margin: 20px 0px;
+  margin: 20px 10%;
   list-style-type: none;
 }
 
@@ -136,4 +131,8 @@
   .form-card, #submit-button {
     width: 580px;
   }
+}
+
+.no-commitments {
+  text-align: center;
 }
