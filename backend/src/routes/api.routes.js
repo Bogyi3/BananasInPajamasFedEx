@@ -9,6 +9,7 @@ import {
 
 import authHandler from '../middlewares/auth-handler';
 import adminAuthHandler from '../middlewares/admin-auth-handler';
+import { userCommitmentController } from '../controllers/userCommitmentController';
 
 const cors = require('cors');
 
@@ -22,6 +23,11 @@ router.post('/sessions', sessionsController.post);
 router.get('/challenge', challengeController.get);
 router.get('/user/:username', usersController.getUserByUsername);
 router.use(authHandler);
+router.post('/commitment', userCommitmentController.post);
+router.delete('/commitment', userCommitmentController.delete);
+router.get('/commitment', userCommitmentController.getUserCommitments);
+router.get('/commitment/:commitmentId', userCommitmentController.getSingleUserCommitments);
+router.put('/commitment', userCommitmentController.updateCompleted);
 router.use(adminAuthHandler);
 router.post('/challenge', challengeController.post);
 
