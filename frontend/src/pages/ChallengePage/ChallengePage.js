@@ -40,7 +40,7 @@ function ChallengePage() {
   function handleAddCommitment(event) {
     event.preventDefault();
     const data = {
-      name: commitmentName,
+      commitmentName,
       xp: commitmentXp,
     };
     setCommitments(commitments.concat(data));
@@ -98,7 +98,7 @@ function ChallengePage() {
           { (commitments || [])
             && commitments.map((commitment, index) => (
               <li key={index}>
-                {commitment.name}
+                {commitment.commitmentName}
                 ,
                 {' '}
                 {commitment.xp}
