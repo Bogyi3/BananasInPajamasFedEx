@@ -18,9 +18,9 @@ router.use(express.json());
 
 router.post('/registration', registrationController.post);
 router.post('/sessions', sessionsController.post);
+router.post('/challenge', challengeController.post);
 router.use(authHandler);
 router.use(adminAuthHandler);
-router.post('/challenge', challengeController.post);
 
 router.get('/hello', helloController.get);
 
