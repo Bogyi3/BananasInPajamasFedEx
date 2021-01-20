@@ -1,8 +1,9 @@
 .drop-down-item {
   width: 80vw;
   margin: 25px auto;
-  background-color: turquoise;
+  background-color:#f5f5dc;
   border-radius: 10px;
+  min-height: 50px;
 }
 
 .drop-down-item button {
@@ -97,7 +98,7 @@
 .ongoing-commitments {
   width: 80vw;
   margin: 25px auto;
-  background-color: turquoise;
+  background-color: #acac7f;
   border-radius: 10px;
 }
 
@@ -117,4 +118,13 @@
   border-top: 1px solid black;
 }
 
+@media screen and (min-width: 700px) {
+  #commitment-page {
+    width: 580px;
+    margin: 0 auto;
+  }
 
+  .drop-down-item, .ongoing-commitments {
+    width: 580px;
+  }
+}

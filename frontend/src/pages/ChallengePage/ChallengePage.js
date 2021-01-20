@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './challengePage.css';
-
-const PORT = process.env.REACT_APP_API_URL;
+import { useSelector } from 'react-redux';
+import generalFetch from '../../utilities/generalFetch';
 
 function ChallengePage() {
   const [challengeName, setChallengeName] = useState('');
@@ -14,6 +14,7 @@ function ChallengePage() {
   const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
   const [minXp, setMinXp] = useState('');
+  const loginData = useSelector((state) => state.login);
 
   function handleAcceptButtonClick() {
     setIsNameSet(!isNameSet);
@@ -21,12 +22,6 @@ function ChallengePage() {
 
   function onChallengeNameChange(event) {
     setChallengeName(event.target.value);
-  }
-
-  function handleDeleteButtonClick(event) {
-    event.preventDefault();
-    setIsNameSet(false);
-    setChallengeName('');
   }
 
   function handleShowAddClick(event) {
@@ -75,41 +70,27 @@ function ChallengePage() {
       closingDate,
       minXp,
     };
-    fetch(`${PORT}/challenge`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    generalFetch('challenge', 'POST', data, loginData.token);
     setShowChallengeAdded(true);
   }
 
   return (
-    <div>
+    <div className="#challenge-page">
       <h2 className="add-header">Add a new challenge:</h2>
-      {!isNameSet && (
-        <>
-          <div className="form-card">
-            <form className="challenge-name-form">
-              <label htmlFor="challengeName">
-                Challenge Name
-                <input
-                  type="text"
-                  name="challengeName"
-                  id="challengeName"
-                  value={challengeName}
-                  onChange={onChallengeNameChange}
-                />
-              </label>
-              <button type="button" onClick={handleAcceptButtonClick}>Accept</button>
-            </form>
-          </div>
-        </>
-      )}
-      <div className="challenge-name form-card">
-        <h2>{challengeName}</h2>
-        <button type="button" onClick={handleDeleteButtonClick}>X</button>
+      <div className="form-card">
+        <form className="challenge-name-form">
+          <label htmlFor="challengeName">
+            Challenge Name
+            <input
+              type="text"
+              name="challengeName"
+              id="challengeName"
+              value={challengeName}
+              onChange={onChallengeNameChange}
+            />
+          </label>
+          <button type="button" className="challenge-button" onClick={handleAcceptButtonClick}>Accept</button>
+        </form>
       </div>
       <div className="commitment-list form-card">
         <h2>Commitments</h2>
@@ -125,7 +106,7 @@ function ChallengePage() {
               </li>
             ))}
         </ul>
-        <button type="button" onClick={handleShowAddClick}>Add more</button>
+        <button type="button" className="challenge-button" onClick={handleShowAddClick}>Add more</button>
       </div>
       {
         showAddCommitment
@@ -155,7 +136,7 @@ function ChallengePage() {
             />
           </label>
           <br />
-          <button type="button" className="add-commit-button" onClick={handleAddCommitment}>Add</button>
+          <button type="button" className="challenge-button add-commit-button" onClick={handleAddCommitment}>Add</button>
         </form>
         )
       }
@@ -193,7 +174,7 @@ function ChallengePage() {
           />
         </label>
       </form>
-      <button type="button" id="submit-button" onClick={handleAddChallengeButton}>Submit Challenge</button>
+      <button type="button" className="challenge-button" id="submit-button" onClick={handleAddChallengeButton}>Submit Challenge</button>
       {showChallengeAdded && (<p className="add-challenge-completed">You have submitted your challenge</p>)}
     </div>
   );

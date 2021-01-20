@@ -3,6 +3,7 @@ import { challengeService, commitmentService } from '../services';
 export const challengeController = {
 
   async post(req, res, next) {
+    console.log(req.body);
     try {
       const {
         challengeName,
