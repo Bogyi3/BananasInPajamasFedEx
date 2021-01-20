@@ -25,7 +25,7 @@ function CommitmentPage() {
   }
 
   return (
-    <div>
+    <div id="commitment-page">
       <div className="drop-down-item user-commitments">
         <button type="button" onClick={toggleCompletedMenu} onKeyDown={toggleCompletedMenu}>
           <div className="drop-down-header">

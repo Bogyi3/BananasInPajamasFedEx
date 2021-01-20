@@ -7,10 +7,13 @@
 .form-card {
   width: 80vw;
   margin: 25px auto;
-  background-color: teal;
-  border-radius: 10px;
+  background-color: #f5f5dc;
+  border-radius: 20px;
   padding: 10px;
   box-sizing: border-box;
+  box-shadow: 0.25rem 0 0.5rem #0D0D26; 
+  border: 1px solid #0D0D26;
+  min-height: fit-content;
 }
 
 .challenge-name-form label {
@@ -30,12 +33,15 @@
   font-size: 18px;
 }
 
-button {
+.challenge-button {
   border: none;
   outline: none;
   height: 10vw;
   width: 20vw;
   border-radius: 4px;
+  background-color: #0D0D26;
+  color: white;
+  border-radius: 10px;
 }
 
 .challenge-name-form button {
@@ -118,4 +124,16 @@ button {
 .add-challenge-completed {
   font-weight: bold;
   text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+  #challenge-page {
+    width: 580px;
+    margin: 0 auto;
+    background-color: teal;
+  }
+
+  .form-card, #submit-button {
+    width: 580px;
+  }
 }
