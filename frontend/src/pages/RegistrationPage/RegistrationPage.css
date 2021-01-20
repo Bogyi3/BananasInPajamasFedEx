@@ -6,7 +6,7 @@
 }
 
 #registerForm {
-  background-color: #e7ffe6;
+  background-color: #f5f5dc;
   width: 100vw;
   padding: 1rem;
   display: flex;
@@ -16,7 +16,7 @@
 }
 
 #registerForm .fa-user-circle {
-  color: #49d290;
+  color: #0D0D26;
   margin-top: 0.5rem;
 }
 
@@ -41,8 +41,8 @@
 }
 
 #registerForm input:focus {
-  box-shadow: 0 0 5px #49d290; 
-  border: 1px solid #49d290;
+  box-shadow: 0 0 5px #0D0D26; 
+  border: 1px solid #0D0D26;
   outline-offset: 0px !important;
   outline: none !important;
 }
@@ -88,8 +88,8 @@
     width: 400px;
     border-radius: 3rem;
     margin-top: 0.5rem;
-    box-shadow: 0.25rem 0 0.5rem #49d290; 
-    border: 1px solid #49d290;
+    box-shadow: 0.25rem 0 0.5rem #0D0D26; 
+    border: 1px solid #0D0D26;
     min-height: fit-content;
   }
 }

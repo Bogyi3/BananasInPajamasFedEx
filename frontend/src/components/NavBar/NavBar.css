@@ -1,0 +1,115 @@
+.navBar {
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+  background-color: #0D0D26;
+  color: #f5f5dc;
+  height: 14vh;
+  font-family: 'Lora', serif;
+  margin-bottom: 1rem;
+}
+
+.navBarTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 7vh;
+  font-size: 1.5rem;
+}
+
+.navBarTitle h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0 0.5rem;
+  color: #f5f5dc;
+}
+
+.navBarLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 7vh;
+}
+
+.navBarButtons {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.money {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0 1rem;
+  color: #f5f5dc;
+}
+
+.navBar .fa-sign-out-alt {
+  padding: 1rem 1rem;
+  color: #f5f5dc;
+  cursor: pointer;
+}
+
+.navBarUserMenu {
+  background-color: #0D0D26;
+  position: absolute;
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+  font-family: 'Lora', serif;
+}
+
+.navBarUserMenuVisitor div, .navBarUserMenuCustomer div {
+  border-top: 1px solid  #f5f5dc;
+  color: #f5f5dc;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+@media (min-width: 600px) {
+
+  .navBar {
+    flex-flow: row;
+    height: 10vh;
+  }
+
+  .navBarTitle {
+    width: 70%;
+    height: 10vh;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    align-items: center;
+  }
+
+  .navBarButtons {
+    width: 30%;
+    height: 10vh;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2rem;
+  }
+
+  .navBarLogos {
+    width: 30%;
+    height: 10vh;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2rem;
+  }
+
+  .navBarTitle h1 {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .navBarUserMenu {
+    width: 10rem;
+    position: absolute;
+    right: 4.5rem
+  }
+
+}
