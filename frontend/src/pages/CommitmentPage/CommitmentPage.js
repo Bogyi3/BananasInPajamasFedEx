@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './commitmentPage.css';
 import Arrow from '../../assets/drop-menu-arrow.png';
+import LineChart from '../../components/LineChart/line';
 
 function CommitmentPage() {
   const [showCompletedMenu, setShowCompletedMenu] = useState(false);
@@ -88,6 +89,7 @@ function CommitmentPage() {
           </div>
         </div>
       </div>
+      <LineChart />
     </div>
   );
 }

@@ -25,4 +25,13 @@ export const challengeController = {
       next(error);
     }
   },
+
+  async get(req, res, next) {
+    try {
+      const response = await challengeService.getChallenges();
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
