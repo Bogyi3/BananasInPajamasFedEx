@@ -50,6 +50,7 @@ function LoginPage() {
       const loggedIn = await dispatch(getUserData(loginObject));
       if (loggedIn === 'success') {
         clearState();
+        // eslint-disable-next-line no-unused-expressions
         history.push('/');
       }
     }
@@ -111,12 +112,12 @@ function LoginPage() {
         <p className="logError">{passwordInput.error}</p>
 
         <div className="buttons">
-          <Link to="/register" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="primary">
+          <Link to="/registration" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="primary" size="small">
               Register
             </Button>
           </Link>
-          <Button onClick={loginClick} variant="contained" color="primary">
+          <Button onClick={loginClick} variant="contained" color="primary" size="small">
             Sign in
           </Button>
         </div>
