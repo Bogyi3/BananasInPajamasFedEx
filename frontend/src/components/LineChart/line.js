@@ -11,7 +11,6 @@ function LineChart() {
     const startingDate = new Date(startingTime);
     const closingTime = closing.slice(0, 10);
     const closingDate = new Date(closingTime);
-
     const differenceInTime = closingDate.getTime() - startingDate.getTime();
     const duration = differenceInTime / (1000 * 3600 * 24) + 1;
     return duration;
@@ -27,6 +26,11 @@ function LineChart() {
           console.log(response.response.results[0]);
           const duration = getDuration(startingDate, closingDate);
           console.log(duration);
+          const labelArray = [];
+          for (let i = 0; i <= duration; i + 1) {
+            labelArray.push(i);
+          }
+          console.log(labelArray);
         }
       } catch (err) {
         console.log('something went wrong');
