@@ -1,9 +1,16 @@
 import { challengeService, commitmentService } from '../services';
 
 export const challengeController = {
+  async get(req, res, next) {
+    try {
+      const result = await challengeService.getChallenges();
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 
   async post(req, res, next) {
-    console.log(req.body);
     try {
       const {
         challengeName,

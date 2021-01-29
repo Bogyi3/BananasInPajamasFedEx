@@ -76,6 +76,7 @@ function CommitmentPage() {
       <div className="ongoing-commitments">
         <h1>Ongoing commitments</h1>
         <div className="ongoing-items">
+          {}
           <div className="commitment-item">
             <div className="commitment-date">feb 1.</div>
             <div className="commitment-name">Walk 30 min</div>
