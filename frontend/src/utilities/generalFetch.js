@@ -16,6 +16,10 @@ async function generalFetch(endpoint, method, bodyData = undefined, token = unde
   const response = await httpResponse.json();
   const { status } = httpResponse;
 
+  if (endpoint === 'challenge' && method === 'GET') {
+    return response;
+  }
+
   const data = { response, status };
   return data;
 }

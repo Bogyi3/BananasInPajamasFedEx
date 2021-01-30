@@ -1,12 +1,25 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
+import { getChallenge } from '../../actions/challengeAction';
 import './LandingPage.css';
 
 function LandingPage() {
   const loginData = useSelector((state) => state.login);
+  const challengeData = useSelector((state) => state.challenge.challenge[0]);
+  console.log(challengeData);
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  function getCurrChallenge() {
+    dispatch(getChallenge(dispatch));
+  }
+
+  useEffect(() => {
+    getCurrChallenge();
+  }, [dispatch]);
 
   useEffect(() => {
     if (loginData.userType === 'admin') {
@@ -16,7 +29,7 @@ function LandingPage() {
 
   return (
     <div>
-      {!loginData.username ? (
+      {!loginData.username && (
         <div className="landingPage page">
           <Typography color="secondary" variant="h1">Welcome to Resolute!</Typography>
           <div className="instruction">
@@ -35,8 +48,30 @@ function LandingPage() {
             <Typography color="secondary" variant="h3">to continue.</Typography>
           </div>
         </div>
-      )
-        : <div>Current challenge:</div>}
+      )}
+      {challengeData === undefined
+        ? 'Loading challenge'
+        : (
+          <div className="current-challenge">
+            <h1 className="challenge-name">
+              {challengeData.challengeName}
+            </h1>
+            <p className="starting-date">
+              Start:
+              {' '}
+              {challengeData.startingDate.slice(0, 10)}
+            </p>
+            <p className="closing-date">
+              End:
+              {' '}
+              {challengeData.closingDate.slice(0, 10)}
+            </p>
+            <button type="button" onClick={() => { history.push('/commitments'); }} className="hover-image">
+              <p>Enter Challenge!</p>
+              <p>hover?</p>
+            </button>
+          </div>
+        )}
     </div>
   );
 }
