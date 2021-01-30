@@ -19,7 +19,7 @@ function NavBar() {
     <>
       <div className="navBar">
         <div className="navBarTitle">
-          <h1>ChallengeAcceptApp</h1>
+          <h1>Resolute</h1>
         </div>
         {!loginData.username && (
         <div className="navBarButtons">

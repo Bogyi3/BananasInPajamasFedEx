@@ -19,9 +19,9 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/registration" component={RegistrationPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/" render={() => <LandingPage />} />
+          <Route exact path="/registration" render={() => <RegistrationPage />} />
+          <Route exact path="/login" render={() => <LoginPage />} />
           <Route exact path="/commitments" render={() => <CommitmentPage />} />
           <Route exact path="/challenge" render={() => <ChallengePage />} />
         </Switch>
