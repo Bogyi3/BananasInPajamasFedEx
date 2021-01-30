@@ -18,7 +18,7 @@ function LandingPage() {
     <div>
       {!loginData.username && (
       <div className="landingPage page">
-        <Typography color="secondary" variant="h1">Welcome to Challenge AcceptApp!</Typography>
+        <Typography color="secondary" variant="h1">Welcome to Resolute!</Typography>
         <div className="instruction">
           <Typography color="secondary" variant="h3">Please, </Typography>
           <Link to="/login" style={{ textDecoration: 'none' }}>
