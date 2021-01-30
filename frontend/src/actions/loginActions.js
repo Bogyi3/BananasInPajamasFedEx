@@ -33,6 +33,10 @@ export const getUserData = (loginObject) => {
     try {
       dispatch(loadingStartedAction());
       const data = await generalFetch('sessions', 'POST', body);
+      const userData = await generalFetch(`user/${data.response.username}`, 'GET');
+
+      const [firstResult] = userData.response.results;
+      data.response.userData = firstResult;
 
       if (data.response.token && data.response.username && data.response.userType) {
         dispatch(setLoginSuccessAction(data.response));
