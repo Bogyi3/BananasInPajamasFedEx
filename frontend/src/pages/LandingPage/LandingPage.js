@@ -66,9 +66,10 @@ function LandingPage() {
               {' '}
               {challengeData.closingDate.slice(0, 10)}
             </p>
-            <button type="button" onClick={() => { history.push('/commitments'); }} className="hover-image">
+            <button type="button" onClick={() => history.push('/commitments')} className="hover-image">
               <p>Enter Challenge!</p>
-              <p>hover?</p>
+              <p>Experience in this challenge</p>
+              <div className="xp-bar"><div className="userXp" /></div>
             </button>
           </div>
         )}
