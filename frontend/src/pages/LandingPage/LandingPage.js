@@ -8,7 +8,6 @@ import './LandingPage.css';
 function LandingPage() {
   const loginData = useSelector((state) => state.login);
   const challengeData = useSelector((state) => state.challenge.challenge[0]);
-  console.log(challengeData);
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -22,8 +21,10 @@ function LandingPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (loginData.userType === 'admin') {
+    if (loginData.userType === 'admin' && challengeData === undefined) {
       history.push('/challenge');
+    } else if (loginData.userType === 'admin') {
+      history.push('commitments');
     }
   });
 
@@ -49,8 +50,8 @@ function LandingPage() {
           </div>
         </div>
       )}
-      {challengeData === undefined
-        ? 'Loading challenge'
+      {challengeData === undefined || !loginData.username
+        ? ''
         : (
           <div className="current-challenge">
             <h1 className="challenge-name">
@@ -66,10 +67,17 @@ function LandingPage() {
               {' '}
               {challengeData.closingDate.slice(0, 10)}
             </p>
+            <p className="current-xp">
+              {loginData.userData.userXp}
+              {' '}
+              /
+              {' '}
+              {challengeData.minXp}
+              {' '}
+              XP
+            </p>
             <button type="button" onClick={() => history.push('/commitments')} className="hover-image">
-              <p>Enter Challenge!</p>
-              <p>Experience in this challenge</p>
-              <div className="xp-bar"><div className="userXp" /></div>
+              <h1>Enter Challenge!</h1>
             </button>
           </div>
         )}
