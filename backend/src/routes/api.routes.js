@@ -5,6 +5,7 @@ import {
   sessionsController,
   challengeController,
   usersController,
+  userCommitmentController,
 } from '../controllers';
 
 import authHandler from '../middlewares/auth-handler';
@@ -22,6 +23,12 @@ router.post('/sessions', sessionsController.post);
 router.get('/challenge', challengeController.get);
 router.get('/user/:username', usersController.getUserByUsername);
 router.use(authHandler);
+router.post('/commitment', userCommitmentController.post);
+router.delete('/commitment', userCommitmentController.delete);
+router.get('/commitment', userCommitmentController.getUserCommitments);
+router.get('/commitment/:commitmentId', userCommitmentController.getSingleUserCommitments);
+router.put('/commitment/:commitmentId', userCommitmentController.updateCompleted);
+router.get('/allUsers', userCommitmentController.getAllUsers);
 router.use(adminAuthHandler);
 router.post('/challenge', challengeController.post);
 

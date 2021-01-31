@@ -1,7 +1,7 @@
 import { commitmentRepo } from '../repositories';
 
 export const commitmentService = {
-  async getChallenges() {
+  async getCommitments() {
     return await commitmentRepo.getCommitments();
   },
 

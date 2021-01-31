@@ -3,3 +3,4 @@ export * from './registrationController';
 export * from './sessionsController';
 export * from './challengeController';
 export * from './usersController';
+export * from './userCommitmentController';
