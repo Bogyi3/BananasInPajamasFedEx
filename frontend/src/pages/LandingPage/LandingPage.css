@@ -36,7 +36,7 @@
   color: #49F2C2;
 }
 
-.current-challenge p {
+.current-challenge p, .current-challenge h1 {
   padding: 0;
   margin: 0;
   color: white;
@@ -56,6 +56,11 @@
 
 .hover-image:hover {
   opacity: 0.9;
+}
+
+.current-challenge .current-xp {
+  font-size: 22px;
+  margin-top: 20px;
 }
 
 @media (min-width: 600px) {
