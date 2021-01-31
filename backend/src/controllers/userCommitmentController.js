@@ -49,12 +49,18 @@ export const userCommitmentController = {
 
   async updateCompleted(req, res, next) {
     try {
-      const {
-        commitmentId,
-        challengeDay,
-      } = req.body;
+      const { commitmentId } = req.params;
       const userId = req.user.id;
-      const result = await userCommitmentService.updateCompleted(userId, commitmentId, challengeDay);
+      const result = await userCommitmentService.updateCompleted(commitmentId, userId);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getAllUsers(req, res, next) {
+    try {
+      const result = await userCommitmentService.getAllUsers();
       res.status(200).json(result);
     } catch (error) {
       next(error);

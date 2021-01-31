@@ -21,17 +21,16 @@ export const userCommitmentRepo = {
     const sql = 'DELETE FROM user_commitments WHERE id=?;';
     return await db.query(sql, [id]);
   },
-  async updateCompleted(userId, commitmentId, challengeDay) {
-    const sql = 'UPDATE user_commitments SET completed=true WHERE user_id=? AND commitment_id=? AND challenge_day=?;';
-    return await db.query(sql, [userId, commitmentId, challengeDay]);
+  async updateCompleted(id, userId) {
+    const sql = 'UPDATE user_commitments SET completed=true WHERE id=? AND user_id=?;';
+    return await db.query(sql, [id, userId]);
   },
-  /* async getAllUsers(userId) {
-    const sql = `SELECT DISTINCT user_id as id, username
+  async getAllUsers() {
+    const sql = `SELECT DISTINCT user_commitments.user_id as id, username
     FROM user_commitments
     LEFT JOIN users ON user_commitments.user_id = users.user_id
-    WHERE user_commitments.user_id=?
     ORDER BY username ASC;`;
-    return await db.query(sql, [userId]);
-  }, */
+    return await db.query(sql, []);
+  },
 
 };

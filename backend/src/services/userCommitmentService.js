@@ -1,7 +1,7 @@
 import { userCommitmentRepo } from '../repositories';
 
 export const userCommitmentService = {
-  async validateCommitmentRequest(userId, commitmentId, challengeDay) {
+  async validateNewCommitmentRequest(userId, commitmentId, challengeDay) {
     if (!userId || !commitmentId || !challengeDay) {
       throw {
         status: 400,
@@ -10,8 +10,17 @@ export const userCommitmentService = {
     }
   },
 
+  async validateModifyingUserCommitment(id, userId) {
+    if (!id) {
+      throw { message: 'User commitment id is required.', status: 400 };
+    }
+    if (!userId) {
+      throw { message: 'User id is required.', status: 400 };
+    }
+  },
+
   async saveNewUserCommitments(userId, commitmentId, challengeDay) {
-    await this.validateCommitmentRequest(userId, commitmentId, challengeDay);
+    await this.validateNewCommitmentRequest(userId, commitmentId, challengeDay);
     // eslint-disable-next-line max-len
     const result = await userCommitmentRepo.insertNewUserCommitment(userId, commitmentId, challengeDay);
     return {
@@ -44,21 +53,24 @@ export const userCommitmentService = {
     return result;
   },
   async getSingleUserCommitmentById(id, userId) {
-    if (!id) {
-      throw { message: 'User commitment id is required.', status: 400 };
-    }
-    if (!userId) {
-      throw { message: 'User id is required.', status: 400 };
-    }
+    await this.validateModifyingUserCommitment(id, userId);
     const result = await userCommitmentRepo.getSingleUserCommitmentById(id, userId);
     if (result.results.length === 0) {
       throw { status: 404, message: 'No commitment found' };
     }
     return result;
   },
-  async updateCompleted(userId, commitmentId, challengeDay) {
-    await this.validateCommitmentRequest(userId, commitmentId, challengeDay);
-    await userCommitmentRepo.updateCompleted(userId, commitmentId, challengeDay);
+  async updateCompleted(id, userId) {
+    await this.validateModifyingUserCommitment(id, userId);
+    const isCommitment = await userCommitmentRepo.getSingleUserCommitmentById(id, userId);
+    if (isCommitment.results.length === 0) {
+      throw { status: 404, message: 'No commitment found' };
+    }
+    await userCommitmentRepo.updateCompleted(id, userId);
     return { message: 'User commitment is completed' };
+  },
+  async getAllUsers() {
+    const result = await userCommitmentRepo.getAllUsers();
+    return result;
   },
 };
