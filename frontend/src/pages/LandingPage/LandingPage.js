@@ -21,10 +21,8 @@ function LandingPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (loginData.userType === 'admin' && challengeData === undefined) {
+    if (loginData.userType === 'admin') {
       history.push('/challenge');
-    } else if (loginData.userType === 'admin') {
-      history.push('commitments');
     }
   });
 
