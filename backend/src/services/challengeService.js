@@ -25,4 +25,11 @@ export const challengeService = {
       message: 'Challenge was saved',
     };
   },
+
+  async deleteChallenge(challengeName) {
+    await challengeRepo.deleteChallenge(challengeName);
+    return {
+      message: 'Challenge deleted, please reload the page to add a new Challenge',
+    };
+  },
 };

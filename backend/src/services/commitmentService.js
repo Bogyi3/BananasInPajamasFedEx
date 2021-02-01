@@ -24,4 +24,8 @@ export const commitmentService = {
       message: 'Commitments were saved',
     };
   },
+
+  async deleteCommitments() {
+    return await commitmentRepo.deleteCommitments();
+  },
 };

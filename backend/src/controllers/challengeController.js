@@ -10,6 +10,29 @@ export const challengeController = {
     }
   },
 
+  async getCommitments(req, res, next) {
+    try {
+      const result = await commitmentService.getCommitments();
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async saveSingleCommitment(req, res, next) {
+    try {
+      const commitment = [{
+        commitmentName: req.body.commitmentName,
+        xp: req.body.xp,
+      }];
+      const { challengeId } = req.body;
+      const result = await commitmentService.saveCommitment(commitment, challengeId);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async post(req, res, next) {
     try {
       const {
@@ -28,6 +51,17 @@ export const challengeController = {
         challenge: result.message,
         commitment: createCommitment.message,
       });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async deleteChallenge(req, res, next) {
+    try {
+      const { challengeName } = req.body;
+      const result = await challengeService.deleteChallenge(challengeName);
+      await commitmentService.deleteCommitments();
+      res.status(200).json(result);
     } catch (error) {
       next(error);
     }

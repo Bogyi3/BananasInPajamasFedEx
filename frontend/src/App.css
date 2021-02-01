@@ -1,3 +1,7 @@
+* {
+  font-family: 'Poppins';
+}
+
 .page {
   min-height: 86vh;
 }
