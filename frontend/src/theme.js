@@ -12,34 +12,34 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: 'Alegreya',
+    fontFamily: 'Poppins',
     h1: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '3rem',
       fontWeight: '700',
     },
     h2: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '2.5rem',
       fontWeight: '700',
     },
     h3: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '2rem',
       fontWeight: '700',
     },
     h4: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '1.75rem',
       fontWeight: '700',
     },
     h5: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '1.5rem',
       fontWeight: '700',
     },
     h6: {
-      fontFamily: 'Lora',
+      fontFamily: 'Poppins',
       fontSize: '1.25rem',
       fontWeight: '700',
     },

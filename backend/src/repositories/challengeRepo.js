@@ -10,4 +10,9 @@ export const challengeRepo = {
     const sql = 'INSERT INTO challenges (challenge_name, starting_date, closing_date, min_xp) VALUES (?, ?, ?, ?);';
     return await db.query(sql, [challengeName, startingDate, closingDate, minXp]);
   },
+
+  async deleteChallenge(challengeName) {
+    const sql = 'DELETE FROM challenges WHERE challenge_name=?;';
+    return await db.query(sql, [challengeName]);
+  },
 };

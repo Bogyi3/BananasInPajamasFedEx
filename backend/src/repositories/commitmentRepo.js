@@ -10,4 +10,9 @@ export const commitmentRepo = {
     const sql = 'INSERT INTO commitments (commitment_name, challenge_id, xp) VALUES (?, ?, ?);';
     return await db.query(sql, [commitmentName, challengeId, xp]);
   },
+
+  async deleteCommitments() {
+    const sql = 'DELETE FROM commitments WHERE commitment_id > 0';
+    return await db.query(sql);
+  },
 };

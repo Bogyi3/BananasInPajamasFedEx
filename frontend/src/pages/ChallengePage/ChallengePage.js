@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './challengePage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChallenge } from '../../actions/challengeAction';
+import { getCommitments } from '../../actions/commitmentAction';
+import { getUsers } from '../../actions/userAction';
 import generalFetch from '../../utilities/generalFetch';
 
 function ChallengePage() {
@@ -14,8 +16,13 @@ function ChallengePage() {
   const [closingDate, setClosingDate] = useState('');
   const [minXp, setMinXp] = useState('');
   const [formError, setFormError] = useState('');
+  const [addCounter, setAddCounter] = useState(0);
+  const [showChallengers, setShowChallengers] = useState(false);
+  const [showChallengersButton, setShowChallengersButton] = useState('Show challengers');
   const loginData = useSelector((state) => state.login);
   const challengeData = useSelector((state) => state.challenge.challenge[0]);
+  const commitmentList = useSelector((state) => state.commitments);
+  const usersList = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
 
@@ -23,9 +30,22 @@ function ChallengePage() {
     dispatch(getChallenge(dispatch));
   }
 
+  function getCommitmentList() {
+    dispatch(getCommitments(dispatch));
+  }
+
+  function getCurrUsers() {
+    dispatch(getUsers());
+  }
+
   useEffect(() => {
     getCurrChallenge();
+    getCurrUsers();
   }, [dispatch]);
+
+  useEffect(() => {
+    getCommitmentList();
+  }, [addCounter]);
 
   function onChallengeNameChange(event) {
     setChallengeName(event.target.value);
@@ -89,8 +109,43 @@ function ChallengePage() {
     }
   }
 
+  function handleShowChallengersClick() {
+    if (!showChallengers) {
+      setShowChallengers(true);
+      setShowChallengersButton('Hide challengers');
+    } else {
+      setShowChallengers(false);
+      setShowChallengersButton('Show challengers');
+    }
+  }
+
+  async function saveCommitmentClick(event) {
+    event.preventDefault();
+    if (!commitmentName || !commitmentXp) {
+      setFormError('Missing field in add commitment form');
+    } else {
+      await generalFetch('commitment', 'PUT', {
+        commitmentName,
+        xp: commitmentXp,
+        challengeId: challengeData.id,
+      });
+      setCommitmentName('');
+      setCommitmentXp('');
+      setAddCounter(addCounter + 1);
+    }
+  }
+
+  async function handleDeleteChallengeClick(event) {
+    event.preventDefault();
+    const bodyData = {
+      challengeName: challengeData.challengeName,
+    };
+    const { token } = loginData;
+    await generalFetch('challenge', 'DELETE', bodyData, token);
+  }
+
   return (
-    challengeData.challengeName === undefined ? (
+    challengeData === undefined ? (
       <div className="challenge-page">
         <h2 className="add-header">Add a new challenge:</h2>
         <div className="form-card">
@@ -194,45 +249,73 @@ function ChallengePage() {
       </div>
     )
       : (
-        <div>
+        <div className="existing-challenge">
           <div className="challenge-card">
-            <h1>{challengeData.challengeName}</h1>
+            <h1 className="challenge-title">{challengeData.challengeName}</h1>
             <p>{challengeData.startingDate.slice(0, 10)}</p>
             <p>-</p>
             <p>{challengeData.closingDate.slice(0, 10)}</p>
             <p>Challengers: 97</p>
           </div>
           <div className="commitments">
+            <div className="commitment-list">
+              <h2>Commitments</h2>
+              <ul>
+                {commitmentList.commitments
+                && commitmentList.commitments.map((commitment, index) => (
+                  <li key={index}>
+                    {commitment.commitmentName}
+                    ,
+                    {' '}
+                    {commitment.xp}
+                    {' XP'}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <form className="add-commit-form">
               <label htmlFor="commitmentName">
-                Name of Commitment:
                 <input
                   type="text"
                   name="commitmentName"
                   id="commitmentName"
                   value={commitmentName}
                   onChange={onCommitmentNameChange}
+                  placeholder="Name of Commitment"
                 />
               </label>
               <br />
               <label htmlFor="commitmentXp">
-                XP value:
-                {' '}
-                <br />
                 <input
                   type="number"
                   name="commitmentXp"
                   id="commitmentXp"
                   value={commitmentXp}
                   onChange={onCommitmentXpChange}
+                  placeholder="XP value"
                 />
               </label>
               <br />
-              <button type="button" className="challenge-button add-commit-button" onClick={handleAddCommitment}>Add</button>
+              <button type="button" className="challenge-button add-commit-button" onClick={saveCommitmentClick}>Add</button>
             </form>
           </div>
-          <button type="button">Show Challengers</button>
-          <button type="button">Delete Challenge</button>
+          <button type="button" className="challenge-button" onClick={handleShowChallengersClick}>{showChallengersButton}</button>
+          {
+            showChallengers && (
+              <div className="challengers">
+                <h1>Challengers</h1>
+                <ul>
+                  {usersList.users
+                  && usersList.users.map((user, index) => (
+                    <li key={index}>
+                      {user.username}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+          <button type="button" className="challenge-button delete-button" onClick={handleDeleteChallengeClick}>Delete Challenge</button>
         </div>
       )
   );
