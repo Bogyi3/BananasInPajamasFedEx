@@ -1,7 +1,15 @@
+#commitment-page {
+  background-color: #2E3D59;
+  width: 90vw;
+  border-radius: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .drop-down-item {
-  width: 80vw;
+  width: 80%;
   margin: 25px auto;
-  background-color:#f5f5dc;
+  background-color:#101726;
   border-radius: 10px;
   min-height: 50px;
 }
@@ -15,6 +23,7 @@
 
 .drop-down-header {
   display: flex;
+  color: #49F2C2;
   align-items: center;
 }
 
@@ -24,8 +33,10 @@
 }
 
 .toggle {
-  background-color: #ccc;
-  border-radius: 0px 0px 10px 10px;
+  background-color: #6D80A6;
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
 }
 
 .hidden {
@@ -44,7 +55,9 @@
 
 .commitment-item {
   display: flex;
-  margin: 5px 20px;
+  width: 90%;
+  box-sizing: border-box;
+  margin: 5px auto;
   font-size: 14px;
 }
 
@@ -71,7 +84,7 @@
 
 .commitment-name {
   font-size: 18px;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   width: 80%;
@@ -96,35 +109,72 @@
 }
 
 .ongoing-commitments {
-  width: 80vw;
+  width: 90%;
   margin: 25px auto;
-  background-color: #acac7f;
   border-radius: 10px;
+  padding-bottom: 10px
+}
+
+.ongoing-commitments .commitment-item {
+  display: grid;
+  grid-template-columns: 1.3fr 5fr 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 .ongoing-commitments h1 {
   font-size: 18px;
   text-align: center;
+  color: #49F2C2;
   padding: 13px;
   margin-bottom: 0px;
 }
 
 .ongoing-items {
-  border-radius: 0px 0px 10px 10px;
-  background-color: wheat;
+  border-radius: 10px;
+  background-color: #6D80A6;
 }
 
 .ongoing-items .commitment-item:not(:first-child) {
   border-top: 1px solid black;
 }
 
+.commitment-item .commit-button {
+  background-color: #49F2C2;
+  border-radius: 15px;
+  width: 100%;
+  height: 90%;
+  margin: 0px 10px;
+  margin-top: 4px;
+}
+
+.commitment-item .commit-button:hover {
+  background-color: #43D9BD;
+}
+
+.delete-image {
+  width: 100%;
+  height: auto;
+  margin-top: 8px;
+  margin-left: 10px;
+  border-radius: 6px;
+}
+
+.delete-image:hover, .complete-image:hover {
+  background-color: #4e5b75;
+}
+
+.complete-image {
+  width: 100%;
+  height: auto;
+  margin-top: 6px;
+  margin-left: 8px;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+ 
 @media screen and (min-width: 700px) {
   #commitment-page {
     width: 580px;
     margin: 0 auto;
-  }
-
-  .drop-down-item, .ongoing-commitments {
-    width: 580px;
   }
 }

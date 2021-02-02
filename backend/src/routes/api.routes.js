@@ -25,6 +25,7 @@ router.get('/challenge-commitment', challengeController.getCommitments);
 router.put('/commitment', challengeController.saveSingleCommitment);
 router.get('/user/:username', usersController.getUserByUsername);
 router.get('/allUsers', userCommitmentController.getAllUsers);
+router.put('/experience', usersController.updateUserXp);
 router.use(authHandler);
 router.post('/commitment', userCommitmentController.post);
 router.delete('/commitment', userCommitmentController.delete);
