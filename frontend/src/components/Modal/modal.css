@@ -18,7 +18,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color:white;
+  background-color:#101726;
   border-radius: 2rem;
   min-width: 200px;
   max-width: 100%;
@@ -26,12 +26,13 @@
   overflow: auto;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 0px 10px 2px #ffffff, 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
   z-index: 1000;
 }
 
 .modal h2 {
   margin-bottom: 1em;
+  color: white;
 }
 
 .fixButton {

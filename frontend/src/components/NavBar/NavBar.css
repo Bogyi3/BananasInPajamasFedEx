@@ -21,7 +21,6 @@
 .navBarTitle h1 {
   font-size: 2rem;
   font-weight: 700;
-  padding: 0 0.5rem;
   color: #f5f5dc;
 }
 
@@ -41,7 +40,6 @@
 .money {
   font-size: 1.25rem;
   font-weight: 700;
-  padding: 0 1rem;
   color: #f5f5dc;
 }
 
@@ -85,7 +83,6 @@
   border-top: 1px solid  #f5f5dc;
   color: #f5f5dc;
   text-align: center;
-  padding: 0.5rem;
 }
 
 @media (min-width: 600px) {
@@ -94,21 +91,26 @@
     height: 105px;
     flex-direction: row;
     justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 2rem;
   }
 
   .navBarTitle {
     padding-left: 2rem;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .navBarButtons {
     align-items: center;
-    padding-right: 2rem;
+    padding-left: 2rem;
+    box-sizing: border-box;
   }
 
   .navBarLogos {
     align-items: center;
     width: 240px;
+    box-sizing: border-box;
   }
 
   .userData h3 {

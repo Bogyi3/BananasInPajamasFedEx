@@ -1,12 +1,18 @@
+body {
+  background-color: #6D80A6;
+  overflow-x: hidden;
+}
+
 .loginPage {
   width: 100vw;
   display: flex;
   flex-flow: column;
   font-family: 'Alegreya', serif;
+  box-sizing: border-box;
 }
 
 #loginForm {
-  background-color: #f5f5dc;
+  background-color: #101726;
   width: 100vw;
   padding: 1rem;
   display: flex;
@@ -16,7 +22,7 @@
 }
 
 .fa-unlock-alt {
-  color: #0D0D26;
+  color: #49F2C2;
   margin: 2rem 0 0.5rem 0;
 }
 
@@ -24,7 +30,7 @@
   font-family: 'Lora', serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #333333;
+  color: #49F2C2;
   text-align: center;
 }
 
@@ -40,8 +46,8 @@
 }
 
 #loginForm input:focus {
-  box-shadow: 0 0 5px #0D0D26; 
-  border: 1px solid #0D0D26;
+  box-shadow: 0 0 5px #43D9BD; 
+  border: 1px solid #43D9BD;
   outline-offset: 0px !important;
   outline: none !important;
 }
@@ -50,7 +56,7 @@
   width: 80%;
   display: block;
   text-align: left;
-  color: #333333;
+  color: white;
   font-weight: 700;
 }
 
@@ -76,14 +82,16 @@
   .loginPage {
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
   }
 
   #loginForm {
     width: 400px;
-    border-radius: 3rem;
-    box-shadow: 0.25rem 0 0.5rem #0D0D26; 
+    border-radius: 15px;
+    box-shadow: 0rem 0 0.5rem #43D9BD; 
     border: 1px solid #0D0D26;
     min-height: fit-content;
     padding-bottom: 2rem;
+    box-sizing: border-box;
   }
 }

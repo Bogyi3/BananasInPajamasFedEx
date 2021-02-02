@@ -150,11 +150,15 @@ function CommitmentPage() {
             closeModal={() => setModalStatus(false)}
             headerText="Choose A Commitment"
             Component={(
-              <ul>
+              <ul className="modal-list">
                 { modalComponent && (
                   modalComponent.map((commitment, index) => (
-                    <li key={index}>
-                      <button type="button" onClick={() => setDayData(commitment.id, commitment.name, commitment.xp)}>
+                    <li key={index} className="modal-list-item">
+                      <button
+                        type="button"
+                        onClick={() => setDayData(commitment.id, commitment.name, commitment.xp)}
+                        className="modal-button"
+                      >
                         {commitment.name}
                         ,
                         {' '}
