@@ -9,4 +9,13 @@ export const usersController = {
       next(error);
     }
   },
+
+  async updateUserXp(req, res, next) {
+    try {
+      const result = await usersService.updateUserXp(req.body.username, req.body.xp);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

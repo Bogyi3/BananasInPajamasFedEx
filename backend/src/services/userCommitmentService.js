@@ -62,10 +62,10 @@ export const userCommitmentService = {
   },
   async updateCompleted(id, userId) {
     await this.validateModifyingUserCommitment(id, userId);
-    const isCommitment = await userCommitmentRepo.getSingleUserCommitmentById(id, userId);
+    /* const isCommitment = await userCommitmentRepo.getSingleUserCommitmentById(id, userId);
     if (isCommitment.results.length === 0) {
       throw { status: 404, message: 'No commitment found' };
-    }
+    } */
     await userCommitmentRepo.updateCompleted(id, userId);
     return { message: 'User commitment is completed' };
   },
