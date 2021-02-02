@@ -1,25 +1,25 @@
 .navBar {
   width: 100vw;
+  text-align: center;
   display: flex;
-  flex-flow: column;
-  background-color: #0D0D26;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #101726;
   color: #f5f5dc;
-  height: 14vh;
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', serif;
   margin-bottom: 1rem;
 }
 
 .navBarTitle {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 7vh;
   font-size: 1.5rem;
 }
 
 .navBarTitle h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   padding: 0 0.5rem;
   color: #f5f5dc;
@@ -29,14 +29,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 7vh;
 }
 
 .navBarButtons {
   display: flex;
-  flex-flow: row;
-  align-items: flex-end;
   justify-content: center;
   gap: 2rem;
 }
@@ -54,14 +51,35 @@
   cursor: pointer;
 }
 
-.navBarUserMenu {
+.user-data h3 {
+  margin: 10px;
+}
+
+.overall-xp {
+  background-color: #6D80A6;
+  width: 33vw;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 15px;
+}
+
+.user-xp {
+  background-color: #43D9BD;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 2px #43D9BD;
+}
+
+
+/* .navBarUserMenu {
   background-color: #0D0D26;
   position: absolute;
   width: 100vw;
   display: flex;
   flex-flow: column;
   font-family: 'Lora', serif;
-}
+} */
 
 .navBarUserMenuVisitor div, .navBarUserMenuCustomer div {
   border-top: 1px solid  #f5f5dc;
@@ -73,43 +91,46 @@
 @media (min-width: 600px) {
 
   .navBar {
-    flex-flow: row;
-    height: 10vh;
+    height: 105px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .navBarTitle {
-    width: 70%;
-    height: 10vh;
-    justify-content: flex-start;
     padding-left: 2rem;
     align-items: center;
   }
 
   .navBarButtons {
-    width: 30%;
-    height: 10vh;
     align-items: center;
-    justify-content: flex-end;
     padding-right: 2rem;
   }
 
   .navBarLogos {
-    width: 30%;
-    height: 10vh;
-    justify-content: flex-end;
     align-items: center;
-    padding-right: 2rem;
+    width: 240px;
+  }
+
+  .userData h3 {
+    margin: 0;
   }
 
   .navBarTitle h1 {
     font-size: 2.5rem;
     padding: 0 1rem;
+    color: #49F2C2;
   }
 
   .navBarUserMenu {
     width: 10rem;
     position: absolute;
     right: 4.5rem
+  }
+
+  .xp-text {
+    position: absolute;
+    left: 47vw;
+    top: 50px;
   }
 
 }
