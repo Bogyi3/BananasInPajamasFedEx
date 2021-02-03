@@ -25,10 +25,10 @@ function NavBar() {
 
   useEffect(() => {
     getChallengeData();
-    if (loginData.userData) {
+    if (loginData.userData && loginData.userType !== 'admin') {
       setXpWidth(Math.min(100, ((loginData.userData.userXp / challengeData.minXp) * 100)));
     }
-  }, [dispatch, xpWidth]);
+  }, [dispatch, loginData.userData]);
 
   return (
     <>
