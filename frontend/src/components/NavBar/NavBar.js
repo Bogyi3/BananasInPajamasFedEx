@@ -25,10 +25,10 @@ function NavBar() {
 
   useEffect(() => {
     getChallengeData();
-    if (loginData.userData) {
+    if (loginData.userData && loginData.userType !== 'admin') {
       setXpWidth(Math.min(100, ((loginData.userData.userXp / challengeData.minXp) * 100)));
     }
-  }, [dispatch]);
+  }, [dispatch, loginData.userData]);
 
   return (
     <>
@@ -40,14 +40,18 @@ function NavBar() {
           loginData.username && (
             <div className="user-data">
               <h3>{loginData.username}</h3>
-              <p className="xp-text">
-                {loginData.userData.userXp}
-                /
-                {challengeData.minXp}
-              </p>
-              <div className="overall-xp">
-                <div className="user-xp" style={{ width: `${xpWidth / 3}vw` }} />
-              </div>
+              {challengeData && (
+                <>
+                  <p className="xp-text">
+                    {loginData.userData.userXp}
+                    /
+                    {challengeData.minXp}
+                  </p>
+                  <div className="overall-xp">
+                    <div className="user-xp" style={{ width: `${xpWidth / 3}vw` }} />
+                  </div>
+                </>
+              )}
             </div>
           )
         }

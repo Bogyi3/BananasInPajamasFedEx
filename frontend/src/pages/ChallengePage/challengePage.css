@@ -7,11 +7,12 @@
 .form-card {
   width: 80vw;
   margin: 25px auto;
-  background-color: #f5f5dc;
-  border-radius: 20px;
+  color: white;
+  background-color: #101726;
+  border-radius: 15px;
   padding: 10px;
   box-sizing: border-box;
-  box-shadow: 0.25rem 0 0.5rem #0D0D26; 
+  box-shadow: 0 0 0.5rem #49F2C2; 
   border: 1px solid #0D0D26;
   min-height: fit-content;
 }
@@ -26,11 +27,12 @@
   margin: 10px 10%;
   background-color: transparent;
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #49F2C2;
   height: 40px;
   width: 80%;
   outline: none;
   font-size: 18px;
+  color:white;
 }
 
 .challenge-button {
@@ -93,13 +95,13 @@
 .form-card input {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #49F2C2;
   width: 80%;
   outline: none;
 }
 
 .form-card input:focus {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #00c3ff;
 }
 
 .form-card label {
@@ -110,6 +112,10 @@
   display: block;
   width: 80vw;
   margin: 25px auto;
+}
+
+#submit-button:active {
+  background-color: #2E3D59;
 }
 
 .add-challenge-completed {
@@ -177,6 +183,18 @@
 .existing-challenge .delete-button {
   background-color: rgb(214, 77, 55);
   margin-bottom: 20px;
+}
+
+.add-commit-form .add-commit-button {
+  width: 23vw; 
+  margin: 10px 4vw;
+  background-color: #43D9BD;
+  color: black;
+  font-size: 18px;
+}
+
+.add-commit-form .add-commit-button:active {
+  background-color: #257a6b;
 }
 
 @media screen and (min-width: 700px) {

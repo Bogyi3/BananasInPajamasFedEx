@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import './challengePage.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getChallenge } from '../../actions/challengeAction';
 import { getCommitments } from '../../actions/commitmentAction';
 import { getUsers } from '../../actions/userAction';
@@ -11,7 +13,7 @@ function ChallengePage() {
   const [commitments, setCommitments] = useState([]);
   const [commitmentName, setCommitmentName] = useState('');
   const [commitmentXp, setCommitmentXp] = useState('');
-  const [showChallengeAdded, setShowChallengeAdded] = useState(false);
+  // const [showChallengeAdded, setShowChallengeAdded] = useState(false);
   const [startingDate, setStartingDate] = useState('');
   const [closingDate, setClosingDate] = useState('');
   const [minXp, setMinXp] = useState('');
@@ -25,6 +27,7 @@ function ChallengePage() {
   const usersList = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function getCurrChallenge() {
     dispatch(getChallenge(dispatch));
@@ -105,7 +108,8 @@ function ChallengePage() {
       setFormError('Correct date format is: 1970.01.01');
     } else {
       generalFetch('challenge', 'POST', data, loginData.token);
-      setShowChallengeAdded(true);
+      history.push('/');
+      setFormError('You have submitted your challenge');
     }
   }
 
@@ -178,7 +182,7 @@ function ChallengePage() {
             </ul>
           </div>
           <form className="add-commit-form">
-            <label htmlFor="commitmentName">
+            <label htmlFor="commitmentName" className="challenge-name-form">
               Name of Commitment:
               <input
                 type="text"
@@ -189,7 +193,7 @@ function ChallengePage() {
               />
             </label>
             <br />
-            <label htmlFor="commitmentXp">
+            <label htmlFor="commitmentXp" className="challenge-name-form">
               XP value:
               {' '}
               <br />
@@ -205,7 +209,7 @@ function ChallengePage() {
             <button type="button" className="challenge-button add-commit-button" onClick={handleAddCommitment}>Add</button>
           </form>
           <form>
-            <label htmlFor="startingDate">
+            <label htmlFor="startingDate" className="challenge-name-form">
               Starting Date
               <input
                 type="text"
@@ -216,7 +220,7 @@ function ChallengePage() {
                 placeholder="format: 2021.01.01"
               />
             </label>
-            <label htmlFor="closingDate">
+            <label htmlFor="closingDate" className="challenge-name-form">
               Closing Date
               <input
                 type="text"
@@ -227,7 +231,7 @@ function ChallengePage() {
                 placeholder="format: 2021.01.01"
               />
             </label>
-            <label htmlFor="minXp">
+            <label htmlFor="minXp" className="challenge-name-form">
               Minimum XP required
               <input
                 type="number"
@@ -245,7 +249,7 @@ function ChallengePage() {
         )
       }
         <button type="button" className="challenge-button" id="submit-button" onClick={handleAddChallengeButton}>Submit Challenge</button>
-        {showChallengeAdded && (<p className="add-challenge-completed">You have submitted your challenge</p>)}
+        {/* showChallengeAdded && (<p className="add-challenge-completed">You have submitted your challenge</p>) */}
       </div>
     )
       : (
