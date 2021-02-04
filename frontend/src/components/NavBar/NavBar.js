@@ -7,12 +7,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { logOutAction } from '../../actions/loginActions';
 import { getChallenge } from '../../actions/challengeAction';
+import { getUserXp } from '../../actions/userXpAction';
 import './NavBar.css';
 
 function NavBar() {
   const loginData = useSelector((state) => state.login);
   const challengeData = useSelector((state) => state.challenge.challenge[0]);
+  const userXp = useSelector((state) => state.userXp.userXp);
   const [xpWidth, setXpWidth] = useState(0);
+  const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
 
   function logout() {
@@ -23,12 +26,22 @@ function NavBar() {
     dispatch(getChallenge());
   }
 
-  useEffect(() => {
-    getChallengeData();
-    if (loginData.userData && loginData.userType !== 'admin') {
-      setXpWidth(Math.min(100, ((loginData.userData.userXp / challengeData.minXp) * 100)));
+  function getLoggedUserXp() {
+    if (loginData.username) {
+      dispatch(getUserXp(loginData.username));
     }
-  }, [dispatch, loginData.userData]);
+  }
+
+  useEffect(() => {
+    getLoggedUserXp();
+    getChallengeData();
+  }, [dispatch, loginData.username]);
+
+  useEffect(() => {
+    if (userXp && loginData.userType !== 'admin') {
+      setXpWidth(Math.min(100, ((userXp / challengeData.minXp) * 100)));
+    }
+  }, [dispatch, userXp]);
 
   return (
     <>
@@ -43,7 +56,7 @@ function NavBar() {
               {challengeData && (
                 <>
                   <p className="xp-text">
-                    {loginData.userData.userXp}
+                    {userXp}
                     /
                     {challengeData.minXp}
                   </p>

@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChallenge } from '../../actions/challengeAction';
 import { getCommitments } from '../../actions/commitmentAction';
+import { getUserXp } from '../../actions/userXpAction';
 import './commitmentPage.css';
 import Arrow from '../../assets/drop-menu-arrow.png';
 import generalFetch from '../../utilities/generalFetch';
@@ -18,6 +20,7 @@ function CommitmentPage() {
   const userData = useSelector((state) => state.login);
   const challengeData = useSelector((state) => state.challenge.challenge[0]);
   const commitments = useSelector((state) => state.commitments.commitments);
+  const userXp = useSelector((state) => state.userXp.userXp);
   const [modalComponent, setModalComponent] = useState('');
   const [currentModalDay, setCurrentModalDay] = useState(0);
   const [buttonPushes, setButtonPushes] = useState(0);
@@ -56,7 +59,7 @@ function CommitmentPage() {
     const days = [];
     for (let i = 1; i <= diffDays; i += 1) {
       days.push({
-        day: i, commitment: 'Set commitment', xp: '', commitmentId: 0,
+        day: i, commitment: 'Set commitment', xp: '', id: 0,
       });
     }
     setChallengeDays(days);
@@ -67,6 +70,10 @@ function CommitmentPage() {
 
     setUserCommitments(result.response.results);
   }
+
+  useEffect(() => {
+    dispatch(getUserXp(userData.username));
+  }, [dispatch, buttonPushes]);
 
   useEffect(() => {
     getCurrChallenge();
@@ -112,6 +119,7 @@ function CommitmentPage() {
     } else {
       setCurrentModalDay(day);
       setModalStatus(true);
+      console.log(challengeDays);
     }
     setButtonPushes(buttonPushes + 1);
   }

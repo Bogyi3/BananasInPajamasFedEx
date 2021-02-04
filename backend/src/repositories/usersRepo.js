@@ -22,7 +22,11 @@ export const usersRepo = {
     return await db.query(sql, []);
   },
   async updateUserXp(username, xp) {
-    const sql = `UPDATE users SET user_xp = ? WHERE username = '${username}'`;
+    const sql = `UPDATE users SET user_xp = ? WHERE username = '${username}';`;
     return await db.query(sql, [xp]);
+  },
+  async getUserXp(username) {
+    const sql = `SELECT user_xp FROM users WHERE username = '${username}';`;
+    return await db.query(sql, []);
   },
 };

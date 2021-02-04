@@ -18,4 +18,13 @@ export const usersController = {
       next(error);
     }
   },
+
+  async getUserXp(req, res, next) {
+    try {
+      const result = await usersService.getUserXp(req.params.username);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

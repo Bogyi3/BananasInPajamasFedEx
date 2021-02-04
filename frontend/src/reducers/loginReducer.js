@@ -12,6 +12,7 @@ const initialState = {
   token: null,
   userType: null,
   userData: null,
+  userXp: null,
   errorMessage: '',
 };
 
@@ -32,6 +33,7 @@ const loginReducer = (state = initialState, action) => {
         token: action.payload.token,
         userType: action.payload.userType,
         userData: action.payload.userData,
+        userXp: action.payload.userData.userXp,
         errorMessage: '',
       };
 
@@ -44,6 +46,7 @@ const loginReducer = (state = initialState, action) => {
         token: null,
         userType: null,
         userData: null,
+        userXp: null,
         errorMessage: action.payload.error,
       };
 
@@ -56,6 +59,7 @@ const loginReducer = (state = initialState, action) => {
         token: null,
         userType: null,
         userData: null,
+        userXp: null,
         errorMessage: '',
       };
 

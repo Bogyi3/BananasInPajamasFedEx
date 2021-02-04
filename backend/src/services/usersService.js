@@ -9,4 +9,7 @@ export const usersService = {
     const { userXp } = user.results[0];
     return await usersRepo.updateUserXp(username, userXp + xp);
   },
+  async getUserXp(username) {
+    return await usersRepo.getUserXp(username);
+  },
 };
