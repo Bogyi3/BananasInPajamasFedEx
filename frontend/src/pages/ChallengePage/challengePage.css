@@ -67,6 +67,7 @@
   font-size: 25px;
 }
 
+
 .challenge-name h2 {
   font-size: 18px;
   margin: 8px 10%;
@@ -210,6 +211,12 @@
 
   .existing-challenge {
     width: 580px;
+  }
+
+  
+  .existing-commit-form .existing-commit-input {
+    width: 500px;
+    margin: 10px auto; 
   }
 }
 

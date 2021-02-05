@@ -59,7 +59,10 @@ function CommitmentPage() {
     const days = [];
     for (let i = 1; i <= diffDays; i += 1) {
       days.push({
-        day: i, commitment: 'Set commitment', xp: '', id: 0,
+        day: i,
+        commitment: 'Set commitment',
+        xp: '',
+        id: 0,
       });
     }
     setChallengeDays(days);
@@ -119,7 +122,6 @@ function CommitmentPage() {
     } else {
       setCurrentModalDay(day);
       setModalStatus(true);
-      console.log(challengeDays);
     }
     setButtonPushes(buttonPushes + 1);
   }
