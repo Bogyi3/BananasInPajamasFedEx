@@ -21,6 +21,7 @@ function ChallengePage() {
   const [addCounter, setAddCounter] = useState(0);
   const [showChallengers, setShowChallengers] = useState(false);
   const [showChallengersButton, setShowChallengersButton] = useState('Show challengers');
+  const [deleteClick, setDeleteClick] = useState(false);
   const loginData = useSelector((state) => state.login);
   const challengeData = useSelector((state) => state.challenge.challenge[0]);
   const commitmentList = useSelector((state) => state.commitments);
@@ -146,6 +147,7 @@ function ChallengePage() {
     };
     const { token } = loginData;
     await generalFetch('challenge', 'DELETE', bodyData, token);
+    setDeleteClick(true);
   }
 
   return (
@@ -277,12 +279,13 @@ function ChallengePage() {
                 ))}
               </ul>
             </div>
-            <form className="add-commit-form">
+            <form className="add-commit-form existing-commit-form">
               <label htmlFor="commitmentName">
                 <input
                   type="text"
                   name="commitmentName"
                   id="commitmentName"
+                  className="existing-commit-input"
                   value={commitmentName}
                   onChange={onCommitmentNameChange}
                   placeholder="Name of Commitment"
@@ -294,6 +297,7 @@ function ChallengePage() {
                   type="number"
                   name="commitmentXp"
                   id="commitmentXp"
+                  className="existing-commit-input"
                   value={commitmentXp}
                   onChange={onCommitmentXpChange}
                   placeholder="XP value"
@@ -320,6 +324,11 @@ function ChallengePage() {
             )
           }
           <button type="button" className="challenge-button delete-button" onClick={handleDeleteChallengeClick}>Delete Challenge</button>
+          {
+            deleteClick && (
+              <div>Challenge Deleted</div>
+            )
+          }
         </div>
       )
   );
